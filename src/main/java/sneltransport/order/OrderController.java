@@ -37,7 +37,10 @@ public class OrderController {
 	@PostMapping("orders")
 	public ResponseEntity<Void> addArticle(@RequestBody Order order, UriComponentsBuilder builder) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(builder.path("/article/{id}").buildAndExpand(order.getOrderId()).toUri());
+		
+		orderService.addOrder(order);
+		
+		headers.setLocation(builder.path("/orders/{id}").buildAndExpand(order.getOrderId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 

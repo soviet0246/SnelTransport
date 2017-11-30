@@ -4,9 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderService {
+	
 	@Autowired
 	private OrderDaoInterface orderDAO;
 
@@ -19,6 +21,7 @@ public class OrderService {
 		return orderDAO.getAllOrders();
 	}
 
+	@Transactional
 	public void addOrder(Order order) {
 		orderDAO.addOrder(order);
 	}

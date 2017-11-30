@@ -11,12 +11,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.data.jpa.convert.threetenbp.ThreeTenBackPortJpaConverters.LocalDateTimeConverter;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
+import ch.qos.logback.core.subst.Token.Type;
+
 @Entity
-@Table(name = "orders")
+@Table(name = "order")
 public class Order implements Serializable {
 
 	/**
@@ -38,6 +45,8 @@ public class Order implements Serializable {
 	// private CustomerId Auto linken
 	@Column(name="dateAndTimeOfOrderMade", nullable = false)
 	@NotNull
+	@JsonSerialize(using = LocalDateTimeSerializer.class)
+//	@Temporal(value = TemporalType.TIMESTAMP)
 	private LocalDateTime dateAndTimeOfOrderMade = LocalDateTime.now();
 
 	public int getOrderId() {
