@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @Controller
+@CrossOrigin
 @RequestMapping("orders")
 public class OrderController {
 	@Autowired
@@ -34,13 +36,14 @@ public class OrderController {
 		return new ResponseEntity<List<Order>>(list, HttpStatus.OK);
 	}
 
-	@PostMapping("orders")
+	
+	@PostMapping("order/add")
 	public ResponseEntity<Void> addArticle(@RequestBody Order order, UriComponentsBuilder builder) {
 		HttpHeaders headers = new HttpHeaders();
-		
+
 		orderService.addOrder(order);
-		
-		headers.setLocation(builder.path("/orders/{id}").buildAndExpand(order.getOrderId()).toUri());
+
+		headers.setLocation(builder.path("/orders/{id}").buildAndExpand(order.getOrder_id()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 

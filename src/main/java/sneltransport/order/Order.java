@@ -2,7 +2,6 @@ package sneltransport.order;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,19 +10,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
-import org.springframework.data.jpa.convert.threetenbp.ThreeTenBackPortJpaConverters.LocalDateTimeConverter;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
-import ch.qos.logback.core.subst.Token.Type;
-
 @Entity
-@Table(name = "order")
+@Table(name = "Orders")
 public class Order implements Serializable {
 
 	/**
@@ -33,46 +26,79 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "orderId", nullable = false, unique = true)
+	@Column(name = "order_id", nullable = false, unique = true)
 	@NotNull
-	private int orderId;
+	private int order_id;
+	
+	@Column(name = "customer_id", nullable = false)
+	@NotNull
+	private int customer_id;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="orderType")
+	@Column(name = "order_type")
 	@NotNull
-	private OrderType orderType;
+	private OrderType order_type;
 
 	// private CustomerId Auto linken
-	@Column(name="dateAndTimeOfOrderMade", nullable = false)
+	@Column(name = "order_date_time", nullable = false)
 	@NotNull
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
-//	@Temporal(value = TemporalType.TIMESTAMP)
-	private LocalDateTime dateAndTimeOfOrderMade = LocalDateTime.now();
+	private LocalDateTime dateAndTimeOrderMade = LocalDateTime.now();
 
-	public int getOrderId() {
-		return orderId;
+	@Column(name = "order_received", nullable = false)
+	@NotNull
+	private boolean order_received = false;
+
+	@Column(name = "order_delivered", nullable = false)
+	@NotNull
+	private boolean orderDelivered = false;
+
+	public int getOrder_id() {
+		return order_id;
 	}
 
-	public void setOrderId(int orderId) {
-		this.orderId = orderId;
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
 	}
 
-	public OrderType getOrderType() {
-		return orderType;
+	public int getCustomer_id() {
+		return customer_id;
 	}
 
-	public void setOrderType(OrderType orderType) {
-		this.orderType = orderType;
+	public void setCustomer_id(int customer_id) {
+		this.customer_id = customer_id;
 	}
 
-	public LocalDateTime getDateAndTimeOfOrderMade() {
-		return dateAndTimeOfOrderMade;
+	public OrderType getOrder_type() {
+		return order_type;
 	}
 
-	public void setDateAndTimeOfOrderMade(LocalDateTime dateAndTimeOfOrderMade) {
-		this.dateAndTimeOfOrderMade = dateAndTimeOfOrderMade;
+	public void setOrder_type(OrderType order_type) {
+		this.order_type = order_type;
 	}
-	
-	
-	
+
+	public LocalDateTime getDateAndTimeOrderMade() {
+		return dateAndTimeOrderMade;
+	}
+
+	public void setDateAndTimeOrderMade(LocalDateTime dateAndTimeOrderMade) {
+		this.dateAndTimeOrderMade = dateAndTimeOrderMade;
+	}
+
+	public boolean isOrder_received() {
+		return order_received;
+	}
+
+	public void setOrder_received(boolean order_received) {
+		this.order_received = order_received;
+	}
+
+	public boolean isOrderDelivered() {
+		return orderDelivered;
+	}
+
+	public void setOrderDelivered(boolean orderDelivered) {
+		this.orderDelivered = orderDelivered;
+	}
+
 }

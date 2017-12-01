@@ -18,13 +18,13 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 
 	@SuppressWarnings("unchecked")
 	public List<Order> getAllOrders() {
-		String hql = "FROM Order as order ORDER BY order.orderId";
+		String hql = "FROM Order as order ORDER BY order.order_id";
 		return (List<Order>) entityManager.createQuery(hql).getResultList();
 	}
 
 	public Order addOrder(Order order) {
 		entityManager.persist(order);
-		return entityManager.find(Order.class, order.getOrderId());
+		return entityManager.find(Order.class, order.getOrder_id());
 	}
 
 	public void updateOrder(Order order) {
