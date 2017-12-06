@@ -6,8 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
+import sneltransport.articles.Article;
 
 @Entity
 @Table(name = "Order_detail")
@@ -24,13 +27,14 @@ public class OrderDetail implements Serializable {
 	@NotNull
 	private int order_detail_id;
 	
-	@Column(name = "order_id", nullable = false)
-	@NotNull
-	private int order_id;
+//	@Column(name = "order_id", nullable = false)
+//	@NotNull
+//	private int order_id;
 	
-	@Column(name = "article_id", nullable = false)
+//	@Column(name = "article", nullable = false)
 	@NotNull
-	private int article_id;
+	@OneToOne
+	private Article article;
 
 	@Column(name = "quantity", nullable = false)
 	@NotNull
@@ -44,20 +48,12 @@ public class OrderDetail implements Serializable {
 		this.order_detail_id = order_detail_id;
 	}
 
-	public int getOrder_id() {
-		return order_id;
+	public Article getArticle() {
+		return article;
 	}
 
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
-	}
-
-	public int getArticle_id() {
-		return article_id;
-	}
-
-	public void setArticle_id(int article_id) {
-		this.article_id = article_id;
+	public void setArticle(Article article) {
+		this.article = article;
 	}
 
 	public int getQuantity() {

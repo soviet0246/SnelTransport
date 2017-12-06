@@ -2,6 +2,9 @@ package sneltransport.order;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,11 +12,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+
+import sneltransport.orderdetail.OrderDetail;
 
 @Entity
 @Table(name = "Orders")
@@ -29,7 +35,7 @@ public class Order implements Serializable {
 	@Column(name = "order_id", nullable = false, unique = true)
 	@NotNull
 	private int order_id;
-	
+
 	@Column(name = "customer_id", nullable = false)
 	@NotNull
 	private int customer_id;
@@ -51,7 +57,11 @@ public class Order implements Serializable {
 
 	@Column(name = "order_delivered", nullable = false)
 	@NotNull
-	private boolean orderDelivered = false;
+	private boolean order_delivered = false;
+
+	@Column(name = "OrderDetails")
+	@OneToMany
+	private List<OrderDetail> order_details = new ArrayList<OrderDetail>();
 
 	public int getOrder_id() {
 		return order_id;
@@ -94,11 +104,26 @@ public class Order implements Serializable {
 	}
 
 	public boolean isOrderDelivered() {
-		return orderDelivered;
+		return order_delivered;
 	}
 
 	public void setOrderDelivered(boolean orderDelivered) {
-		this.orderDelivered = orderDelivered;
+		this.order_delivered = orderDelivered;
 	}
 
+	public boolean isOrder_delivered() {
+		return order_delivered;
+	}
+
+	public void setOrder_delivered(boolean order_delivered) {
+		this.order_delivered = order_delivered;
+	}
+
+	public List<OrderDetail> getOrder_details() {
+		return order_details;
+	}
+
+	public void setOrder_details(List<OrderDetail> order_details) {
+		this.order_details = order_details;
+	}
 }

@@ -23,6 +23,9 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 	}
 
 	public Order addOrder(Order order) {
+		
+//		System.out.println("Order size" + order.getOrder_details().size());
+		
 		entityManager.persist(order);
 		return entityManager.find(Order.class, order.getOrder_id());
 	}

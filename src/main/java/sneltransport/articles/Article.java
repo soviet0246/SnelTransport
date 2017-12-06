@@ -22,8 +22,7 @@ public class Article implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "article_Id", nullable = false, unique = true)
-	@NotNull
+	@Column(name = "article_id", nullable = false, unique = true)
 	private String article_id;
 
 	@Column(name = "article_name", nullable = false)
