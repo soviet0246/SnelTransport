@@ -25,7 +25,8 @@ public class OrderDetailDaoImplementations implements OrderDetailDaoInterface {
 		String hql = "FROM OrderDetail as order_detail ORDER BY order_detail.order_detail_id";
 		return (List<OrderDetail>) entityManager.createQuery(hql).getResultList();
 	}
-
+	
+	@Transactional
 	public OrderDetail addOrderDetail(OrderDetail orderDetail) {
 		entityManager.persist(orderDetail);
 		return entityManager.find(OrderDetail.class, orderDetail.getOrder_detail_id());
