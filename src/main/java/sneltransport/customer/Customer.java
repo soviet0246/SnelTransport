@@ -34,10 +34,7 @@ public class Customer implements Serializable {
 
 	@Column(name = "customer_housenumber", nullable = false)
 	@NotNull
-	private int customer_housenumber;
-
-	@Column(name = "customer_housenumber_addition")
-	private String customer_housenumber_addition;
+	private String customer_housenumber;
 
 	@Column(name = "customer_postcode", nullable = false)
 	@NotNull
@@ -78,20 +75,12 @@ public class Customer implements Serializable {
 		this.customer_street = customer_street;
 	}
 
-	public int getCustomer_housenumber() {
+	public String getCustomer_housenumber() {
 		return customer_housenumber;
 	}
 
-	public void setCustomer_housenumber(int customer_housenumber) {
+	public void setCustomer_housenumber(String customer_housenumber) {
 		this.customer_housenumber = customer_housenumber;
-	}
-
-	public String getCustomer_housenumber_addition() {
-		return customer_housenumber_addition;
-	}
-
-	public void setCustomer_housenumber_addition(String customer_housenumber_addition) {
-		this.customer_housenumber_addition = customer_housenumber_addition;
 	}
 
 	public String getCustomer_postcode() {
