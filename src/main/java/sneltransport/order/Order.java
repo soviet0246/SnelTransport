@@ -60,7 +60,7 @@ public class Order implements Serializable {
 	private boolean order_delivered = false;
 
 	@Column(name = "OrderDetails")
-	@OneToMany
+	@OneToMany(mappedBy="order_id")
 	private List<OrderDetail> order_details = new ArrayList<OrderDetail>();
 
 	public int getOrder_id() {

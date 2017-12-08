@@ -27,9 +27,9 @@ public class OrderDetail implements Serializable {
 	@NotNull
 	private int order_detail_id;
 	
-//	@Column(name = "order_id", nullable = false)
-//	@NotNull
-//	private int order_id;
+	@Column(name = "order_id", nullable = false)
+	@NotNull
+	private int order_id;
 	
 //	@Column(name = "article", nullable = false)
 	@NotNull
@@ -63,4 +63,14 @@ public class OrderDetail implements Serializable {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+	public int getOrder_id() {
+		return order_id;
+	}
+
+	public void setOrder_id(int order_id) {
+		this.order_id = order_id;
+	}
+	
+	
 }

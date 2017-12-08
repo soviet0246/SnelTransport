@@ -24,7 +24,7 @@ public class OrderController {
 	@Autowired
 	private OrderService orderService;
 
-	@GetMapping("orders/{id}")
+	@GetMapping("order/{id}")
 	public ResponseEntity<Order> getArticleById(@PathVariable("id") Integer id) {
 		Order order = orderService.getOrderById(id);
 		return new ResponseEntity<Order>(order, HttpStatus.OK);

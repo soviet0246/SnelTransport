@@ -24,7 +24,7 @@ public class CustomerController {
 	@Autowired
 	private CustomerService customerService;
 
-	@GetMapping("customers/{id}")
+	@GetMapping("customer/{id}")
 	public ResponseEntity<Customer> getArticleById(@PathVariable("id") Integer id) {
 		Customer customer = customerService.getCustomerById(id);
 		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
