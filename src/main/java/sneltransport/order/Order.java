@@ -62,7 +62,7 @@ public class Order implements Serializable {
 	@NotNull
 	private boolean order_delivered = false;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name = "order_id", nullable = false)
 	private Set<OrderDetail> order_details;// = new ArrayList<OrderDetail>();
 

@@ -36,7 +36,7 @@ public class OrderDetail implements Serializable {
 	@NotNull
 	private int order_detail_id;
 	
-	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Order.class)
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
 	@NotNull
 	private Order order;
 	
