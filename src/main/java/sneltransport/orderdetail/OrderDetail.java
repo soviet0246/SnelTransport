@@ -3,14 +3,18 @@ package sneltransport.orderdetail;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import sneltransport.articles.Article;
+import sneltransport.order.Order;
 
 @Entity
 @Table(name = "Order_detail")
@@ -27,11 +31,12 @@ public class OrderDetail implements Serializable {
 	@NotNull
 	private int order_detail_id;
 	
-	@Column(name = "order_id", nullable = false)
-	@NotNull
+//	@Column(name = "order_id", nullable = false)
+//	@NotNull
+	@ManyToOne(fetch= FetchType.EAGER, targetEntity = Order.class)
+    @JoinColumn(name="order_id", nullable=false)
 	private int order_id;
 	
-//	@Column(name = "article", nullable = false)
 	@NotNull
 	@OneToOne
 	private Article article;
@@ -71,6 +76,6 @@ public class OrderDetail implements Serializable {
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}
-	
+
 	
 }

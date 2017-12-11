@@ -9,9 +9,11 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -31,7 +33,7 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_id", nullable = false, unique = true)
 	@NotNull
 	private int order_id;
@@ -60,13 +62,17 @@ public class Order implements Serializable {
 	private boolean order_delivered = false;
 
 	@Column(name = "OrderDetails")
-	@OneToMany(mappedBy="order_id")
+	@OneToMany(mappedBy="order_detail_id", fetch = FetchType.EAGER)
 	private List<OrderDetail> order_details = new ArrayList<OrderDetail>();
 
 	public int getOrder_id() {
 		return order_id;
 	}
 
+	public void setOrder_id(Integer order_id) {
+		this.order_id = order_id.intValue();
+	}
+	
 	public void setOrder_id(int order_id) {
 		this.order_id = order_id;
 	}

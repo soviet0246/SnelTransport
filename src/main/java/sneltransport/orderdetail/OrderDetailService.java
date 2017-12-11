@@ -21,7 +21,7 @@ public class OrderDetailService {
 		return orderDetailDAO.getAllOrderDetails();
 	}
 
-	@Transactional
+//	@Transactional
 	public void addOrderDetail(OrderDetail orderDetail) {
 		orderDetailDAO.addOrderDetail(orderDetail);
 	}

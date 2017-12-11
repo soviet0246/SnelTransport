@@ -25,7 +25,7 @@ public class OrderController {
 	private OrderService orderService;
 
 	@GetMapping("order/{id}")
-	public ResponseEntity<Order> getArticleById(@PathVariable("id") Integer id) {
+	public ResponseEntity<Order> getOrderById(@PathVariable("id") Integer id) {
 		Order order = orderService.getOrderById(id);
 		return new ResponseEntity<Order>(order, HttpStatus.OK);
 	}
@@ -38,23 +38,23 @@ public class OrderController {
 
 	
 	@PostMapping("order/add")
-	public ResponseEntity<Void> addArticle(@RequestBody Order order, UriComponentsBuilder builder) {
+	public ResponseEntity<Void> addOrder(@RequestBody Order order, UriComponentsBuilder builder) {
 		HttpHeaders headers = new HttpHeaders();
-
+		
 		orderService.addOrder(order);
-
-		headers.setLocation(builder.path("/orders/{id}").buildAndExpand(order.getOrder_id()).toUri());
+		
+		headers.setLocation(builder.path("/order/{id}").buildAndExpand(order.getOrder_id()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
 	@PutMapping("orders")
-	public ResponseEntity<Order> updateArticle(@RequestBody Order article) {
+	public ResponseEntity<Order> updateOrder(@RequestBody Order article) {
 		orderService.updateOrder(article);
 		return new ResponseEntity<Order>(article, HttpStatus.OK);
 	}
 
 	@DeleteMapping("orders/{id}")
-	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
+	public ResponseEntity<Void> deleteOrder(@PathVariable("id") Integer id) {
 		orderService.deleteOrder(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}

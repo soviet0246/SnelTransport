@@ -96,23 +96,23 @@ INSERT INTO customer (customer_id, customer_name, customer_street, customer_hous
 (39, 'DynaByte,',  'De Wittevrouwensngl', '95A','3514AL','Utrecht','030-2721406','030-2760719' ),
 (40, 'IT  Zaanstad',  'Roode Wildemanwg', '2','1521PT','Wormerveer','075-6470760','075-6470769' ),
 (41, 'IT  Zoetermeer',  'Koperstr', '3','2718RG','Zoetermeer','079-3634141','079-3634140' );
-INSERT INTO orders (order_id, customer_id, order_date_time, order_delivered, order_received, order_type)
-VALUES (1, 1, current_timestamp, false, false, 'ORDER'),
-(2, 1, current_timestamp, false, false, 'ORDER'),
-(3, 1, current_timestamp, false, false, 'ORDER'),
-(4, 1, current_timestamp, false, false, 'ORDER'),
-(5, 1, current_timestamp, false, false, 'ORDER');
-INSERT INTO order_detail (order_detail_id, quantity, article_article_id, order_id)
-VALUES 
-(1, 5, '90-MXGXX0-A0UAYZ', 1),
-(2, 5, '1558', 1),
-(3, 5, '1636', 1),
-(4, 5, '55745', 1),
-(5, 5, '90-XB1000KM00020', 1),
-(6, 5, '90-XB2400KM00130-', 1),
-(7, 5, '90-MXGXX0-A0UAYZ', 2),
-(8, 5, '90-MXGXX0-A0UAYZ', 3),
-(9, 5, '90-MXGXX0-A0UAYZ', 4),
-(10, 5, '90-MXGXX0-A0UAYZ', 5);
+--INSERT INTO orders (order_id, customer_id, order_date_time, order_delivered, order_received, order_type)
+--VALUES (1, 1, current_timestamp, false, false, 'ORDER'),
+--(2, 1, current_timestamp, false, false, 'ORDER'),
+--(3, 1, current_timestamp, false, false, 'ORDER'),
+--(4, 1, current_timestamp, false, false, 'ORDER'),
+--(5, 1, current_timestamp, false, false, 'ORDER');
+--INSERT INTO order_detail (order_detail_id, quantity, article_article_id, order_id)
+--VALUES 
+--(1, 5, '90-MXGXX0-A0UAYZ', 1),
+--(2, 5, '1558', 1),
+--(3, 5, '1636', 1),
+--(4, 5, '55745', 1),
+--(5, 5, '90-XB1000KM00020', 1),
+--(6, 5, '90-XB2400KM00130-', 1),
+--(7, 5, '90-MXGXX0-A0UAYZ', 2),
+--(8, 5, '90-MXGXX0-A0UAYZ', 3),
+--(9, 5, '90-MXGXX0-A0UAYZ', 4),
+--(10, 5, '90-MXGXX0-A0UAYZ', 5);
 
 
