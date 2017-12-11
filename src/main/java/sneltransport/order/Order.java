@@ -2,9 +2,9 @@ package sneltransport.order;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
@@ -33,7 +34,7 @@ public class Order implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id", nullable = false, unique = true)
 	@NotNull
 	private int order_id;
@@ -61,9 +62,9 @@ public class Order implements Serializable {
 	@NotNull
 	private boolean order_delivered = false;
 
-	@Column(name = "OrderDetails")
-	@OneToMany(mappedBy="order_detail_id", fetch = FetchType.EAGER)
-	private List<OrderDetail> order_details = new ArrayList<OrderDetail>();
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinColumn(name = "order_id", nullable = false)
+	private Set<OrderDetail> order_details;// = new ArrayList<OrderDetail>();
 
 	public int getOrder_id() {
 		return order_id;
@@ -125,11 +126,11 @@ public class Order implements Serializable {
 		this.order_delivered = order_delivered;
 	}
 
-	public List<OrderDetail> getOrder_details() {
+	public Set<OrderDetail> getOrder_details() {
 		return order_details;
 	}
 
-	public void setOrder_details(List<OrderDetail> order_details) {
+	public void setOrder_details(Set<OrderDetail> order_details) {
 		this.order_details = order_details;
 	}
 }

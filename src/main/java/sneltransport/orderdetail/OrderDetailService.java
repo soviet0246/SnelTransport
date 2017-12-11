@@ -23,6 +23,7 @@ public class OrderDetailService {
 
 //	@Transactional
 	public void addOrderDetail(OrderDetail orderDetail) {
+//		orderDetail.getOrder().getOrder_id();
 		orderDetailDAO.addOrderDetail(orderDetail);
 	}
 

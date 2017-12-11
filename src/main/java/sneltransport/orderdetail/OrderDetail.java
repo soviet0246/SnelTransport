@@ -1,6 +1,8 @@
 package sneltransport.orderdetail;
 
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,11 +15,14 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import sneltransport.articles.Article;
 import sneltransport.order.Order;
 
 @Entity
-@Table(name = "Order_detail")
+@Table(name = "Order_details")
 public class OrderDetail implements Serializable {
 
 	/**
@@ -26,16 +31,14 @@ public class OrderDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_detail_id", nullable = false, unique = true)
 	@NotNull
 	private int order_detail_id;
 	
-//	@Column(name = "order_id", nullable = false)
-//	@NotNull
-	@ManyToOne(fetch= FetchType.EAGER, targetEntity = Order.class)
-    @JoinColumn(name="order_id", nullable=false)
-	private int order_id;
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Order.class)
+	@NotNull
+	private Order order;
 	
 	@NotNull
 	@OneToOne
@@ -53,6 +56,14 @@ public class OrderDetail implements Serializable {
 		this.order_detail_id = order_detail_id;
 	}
 
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
 	public Article getArticle() {
 		return article;
 	}
@@ -68,14 +79,6 @@ public class OrderDetail implements Serializable {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-
-	public int getOrder_id() {
-		return order_id;
-	}
-
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
-	}
-
+	
 	
 }

@@ -28,6 +28,10 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 //		System.out.println("Order size" + order.getOrder_details().size());
 		
 		entityManager.persist(order);
+		entityManager.flush();
+		
+		System.out.println("Dit word eerst nog uitgevoerd");
+		
 		return entityManager.find(Order.class, order.getOrder_id());
 	}
 	@Transactional

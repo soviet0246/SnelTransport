@@ -28,21 +28,10 @@ public class OrderService {
 		return orderDAO.getAllOrders();
 	}
 
-//	@Transactional
 	public void addOrder(Order order) {
 		orderDAO.addOrder(order);
 		
-//		"OrderId: " + orderId);
-		
-		for(OrderDetail orderDetail : order.getOrder_details()) {
-//			  Integer neededToCast = order.getOrder_id();
-			
-//			orderDetail.setOrder_id(neededToCast.intValue());//
-//			;
-			orderDetailService.addOrderDetail(orderDetail);
-		}
-		
-		
+		System.out.println("OrderService 34: " + order.getOrder_id());
 	}
 
 	public void updateOrder(Order order) {
