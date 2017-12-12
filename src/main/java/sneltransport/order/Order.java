@@ -18,7 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 
@@ -37,61 +37,64 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "order_id", nullable = false, unique = true)
 	@NotNull
-	private int order_id;
+	@JsonProperty("order_id")
+	private int orderId;
 
 	@Column(name = "customer_id", nullable = false)
 	@NotNull
-	private int customer_id;
+	@JsonProperty("customer_id")
+	private int customerId;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "order_type")
 	@NotNull
-	private OrderType order_type;
+	@JsonProperty("order_type")
+	private OrderType orderType;
 
 	// private CustomerId Auto linken
 	@Column(name = "order_date_time", nullable = false)
 	@NotNull
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
+	@JsonProperty("order_date_time")
 	private LocalDateTime dateAndTimeOrderMade = LocalDateTime.now();
 
 	@Column(name = "order_received", nullable = false)
 	@NotNull
-	private boolean order_received = false;
+	@JsonProperty("order_received")
+	private boolean orderReceived = false;
 
 	@Column(name = "order_delivered", nullable = false)
 	@NotNull
-	private boolean order_delivered = false;
+	@JsonProperty("order_delivered")
+	private boolean orderDelivered = false;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
 	@JoinColumn(name = "order_id", nullable = false)
-	private Set<OrderDetail> order_details;// = new ArrayList<OrderDetail>();
-
-	public int getOrder_id() {
-		return order_id;
-	}
-
-	public void setOrder_id(Integer order_id) {
-		this.order_id = order_id.intValue();
-	}
+	@JsonProperty("order_details")
+	private Set<OrderDetail> orderDetails;
 	
-	public void setOrder_id(int order_id) {
-		this.order_id = order_id;
+	public int getOrderId() {
+		return orderId;
 	}
 
-	public int getCustomer_id() {
-		return customer_id;
+	public void setOrderId(int orderId) {
+		this.orderId = orderId;
 	}
 
-	public void setCustomer_id(int customer_id) {
-		this.customer_id = customer_id;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public OrderType getOrder_type() {
-		return order_type;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public void setOrder_type(OrderType order_type) {
-		this.order_type = order_type;
+	public OrderType getOrderType() {
+		return orderType;
+	}
+
+	public void setOrderType(OrderType orderType) {
+		this.orderType = orderType;
 	}
 
 	public LocalDateTime getDateAndTimeOrderMade() {
@@ -102,35 +105,27 @@ public class Order implements Serializable {
 		this.dateAndTimeOrderMade = dateAndTimeOrderMade;
 	}
 
-	public boolean isOrder_received() {
-		return order_received;
+	public boolean isOrderReceived() {
+		return orderReceived;
 	}
 
-	public void setOrder_received(boolean order_received) {
-		this.order_received = order_received;
+	public void setOrderReceived(boolean orderReceived) {
+		this.orderReceived = orderReceived;
 	}
 
 	public boolean isOrderDelivered() {
-		return order_delivered;
+		return orderDelivered;
 	}
 
 	public void setOrderDelivered(boolean orderDelivered) {
-		this.order_delivered = orderDelivered;
+		this.orderDelivered = orderDelivered;
 	}
 
-	public boolean isOrder_delivered() {
-		return order_delivered;
+	public Set<OrderDetail> getOrderDetails() {
+		return orderDetails;
 	}
 
-	public void setOrder_delivered(boolean order_delivered) {
-		this.order_delivered = order_delivered;
-	}
-
-	public Set<OrderDetail> getOrder_details() {
-		return order_details;
-	}
-
-	public void setOrder_details(Set<OrderDetail> order_details) {
-		this.order_details = order_details;
+	public void setOrderDetails(Set<OrderDetail> orderDetails) {
+		this.orderDetails = orderDetails;
 	}
 }

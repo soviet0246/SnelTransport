@@ -42,7 +42,7 @@ public class ArticleController {
 
 		articleService.addArticle(article);
 
-		headers.setLocation(builder.path("/articles/{id}").buildAndExpand(article.getArticle_id()).toUri());
+		headers.setLocation(builder.path("/articles/{id}").buildAndExpand(article.getArticleId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 

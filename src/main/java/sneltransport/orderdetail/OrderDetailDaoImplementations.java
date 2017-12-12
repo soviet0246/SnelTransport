@@ -22,7 +22,7 @@ public class OrderDetailDaoImplementations implements OrderDetailDaoInterface {
 
 	@SuppressWarnings("unchecked")
 	public List<OrderDetail> getAllOrderDetails() {
-		String hql = "FROM OrderDetail as order_detail ORDER BY order_detail.order_detail_id";
+		String hql = "FROM OrderDetail as order_detail ORDER BY order_detail.orderDetailId";
 		return (List<OrderDetail>) entityManager.createQuery(hql).getResultList();
 	}
 	

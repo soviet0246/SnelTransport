@@ -102,7 +102,7 @@ INSERT INTO customer (customer_id, customer_name, customer_street, customer_hous
 --(3, 1, current_timestamp, false, false, 'ORDER'),
 --(4, 1, current_timestamp, false, false, 'ORDER'),
 --(5, 1, current_timestamp, false, false, 'ORDER');
---INSERT INTO order_detail (order_detail_id, quantity, article_article_id, order_id)
+--INSERT INTO order_details (order_detail_id, quantity, article_article_id, order_id)
 --VALUES 
 --(1, 5, '90-MXGXX0-A0UAYZ', 1),
 --(2, 5, '1558', 1),

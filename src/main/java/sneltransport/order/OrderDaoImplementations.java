@@ -19,7 +19,7 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 
 	@SuppressWarnings("unchecked")
 	public List<Order> getAllOrders() {
-		String hql = "FROM Order as order ORDER BY order.order_id";
+		String hql = "FROM Order as order ORDER BY order.orderId";
 		return (List<Order>) entityManager.createQuery(hql).getResultList();
 	}
 	@Transactional
@@ -32,7 +32,7 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 		
 		System.out.println("Dit word eerst nog uitgevoerd");
 		
-		return entityManager.find(Order.class, order.getOrder_id());
+		return entityManager.find(Order.class, order.getOrderId());
 	}
 	@Transactional
 	public void updateOrder(Order order) {

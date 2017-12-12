@@ -20,13 +20,13 @@ public class CustomerDaoImplementations implements CustomerDaoInterface {
 
 	@SuppressWarnings("unchecked")
 	public List<Customer> getAllCustomers() {
-		String hql = "FROM Customer as customer ORDER BY customer.customer_id";
+		String hql = "FROM Customer as customer ORDER BY customer.customerId";
 		return (List<Customer>) entityManager.createQuery(hql).getResultList();
 	}
 
 	public Customer addCustomer(Customer customer) {
 		entityManager.persist(customer);
-		return entityManager.find(Customer.class, customer.getCustomer_id());
+		return entityManager.find(Customer.class, customer.getCustomerId());
 	}
 
 	@Transactional

@@ -43,7 +43,7 @@ public class CustomerController {
 
 		customerService.addCustomer(customer);
 
-		headers.setLocation(builder.path("/customers/{id}").buildAndExpand(customer.getCustomer_id()).toUri());
+		headers.setLocation(builder.path("/customers/{id}").buildAndExpand(customer.getCustomerId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 

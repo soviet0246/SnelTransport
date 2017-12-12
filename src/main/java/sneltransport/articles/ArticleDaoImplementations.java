@@ -18,13 +18,13 @@ public class ArticleDaoImplementations implements ArticleDaoInterface {
 
 	@SuppressWarnings("unchecked")
 	public List<Article> getAllArticles() {
-		String hql = "FROM Article as article ORDER BY article.article_id";
+		String hql = "FROM Article as article ORDER BY article.articleId";
 		return (List<Article>) entityManager.createQuery(hql).getResultList();
 	}
 
 	public Article addArticle(Article article) {
 		entityManager.persist(article);
-		return entityManager.find(Article.class, article.getArticle_id());
+		return entityManager.find(Article.class, article.getArticleId());
 	}
 
 	public void updateArticle(Article article) {

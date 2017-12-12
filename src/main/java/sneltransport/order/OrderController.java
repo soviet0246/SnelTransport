@@ -43,7 +43,7 @@ public class OrderController {
 		
 		orderService.addOrder(order);
 		
-		headers.setLocation(builder.path("/order/{id}").buildAndExpand(order.getOrder_id()).toUri());
+		headers.setLocation(builder.path("/order/{id}").buildAndExpand(order.getOrderId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 

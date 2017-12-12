@@ -16,13 +16,14 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import sneltransport.articles.Article;
 import sneltransport.order.Order;
 
 @Entity
-@Table(name = "Order_details")
+@Table(name = "Order_detail")
 public class OrderDetail implements Serializable {
 
 	/**
@@ -34,9 +35,10 @@ public class OrderDetail implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_detail_id", nullable = false, unique = true)
 	@NotNull
+	@JsonProperty("order_detail_id")
 	private int orderDetailId;
 
-	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Order.class)
 	private Order order;
 
 	@NotNull

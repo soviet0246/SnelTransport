@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "Customer")
 public class Customer implements Serializable {
@@ -22,97 +24,104 @@ public class Customer implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "customer_id", nullable = false, unique = true)
 	@NotNull
-	private int customer_id;
+	@JsonProperty("customer_id")
+	private int customerId;
 
 	@Column(name = "customer_name", nullable = false)
 	@NotNull
-	private String customer_name;
+	@JsonProperty("customer_name")
+	private String customerName;
 
 	@Column(name = "customer_street", nullable = false)
 	@NotNull
-	private String customer_street;
+	@JsonProperty("customer_street")
+	private String customerStreet;
 
 	@Column(name = "customer_housenumber", nullable = false)
 	@NotNull
-	private String customer_housenumber;
+	@JsonProperty("customer_housenumber")
+	private String customerHousenumber;
 
 	@Column(name = "customer_postcode", nullable = false)
 	@NotNull
-	private String customer_postcode;
+	@JsonProperty("customer_postcode")
+	private String customerPostcode;
 
 	@Column(name = "customer_city", nullable = false)
 	@NotNull
-	private String customer_city;
+	@JsonProperty("customer_city")
+	private String customerCity;
 
 	@Column(name = "customer_tel_number", nullable = false)
 	@NotNull
-	private String customer_tel_number;
+	@JsonProperty("customer_tel_number")
+	private String customerTelNumber;
 
 	@Column(name = "customer_fax_number")
-	private String customer_fax_number;
+	@JsonProperty("customer_fax_number")
+	private String customerFaxNumber;
 
-	public int getCustomer_id() {
-		return customer_id;
+	public int getCustomerId() {
+		return customerId;
 	}
 
-	public void setCustomer_id(int customer_id) {
-		this.customer_id = customer_id;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
-	public String getCustomer_name() {
-		return customer_name;
+	public String getCustomerName() {
+		return customerName;
 	}
 
-	public void setCustomer_name(String customer_name) {
-		this.customer_name = customer_name;
+	public void setCustomerName(String customerName) {
+		this.customerName = customerName;
 	}
 
-	public String getCustomer_street() {
-		return customer_street;
+	public String getCustomerStreet() {
+		return customerStreet;
 	}
 
-	public void setCustomer_street(String customer_street) {
-		this.customer_street = customer_street;
+	public void setCustomerStreet(String customerStreet) {
+		this.customerStreet = customerStreet;
 	}
 
-	public String getCustomer_housenumber() {
-		return customer_housenumber;
+	public String getCustomerHousenumber() {
+		return customerHousenumber;
 	}
 
-	public void setCustomer_housenumber(String customer_housenumber) {
-		this.customer_housenumber = customer_housenumber;
+	public void setCustomerHousenumber(String customerHousenumber) {
+		this.customerHousenumber = customerHousenumber;
 	}
 
-	public String getCustomer_postcode() {
-		return customer_postcode;
+	public String getCustomerPostcode() {
+		return customerPostcode;
 	}
 
-	public void setCustomer_postcode(String customer_postcode) {
-		this.customer_postcode = customer_postcode;
+	public void setCustomerPostcode(String customerPostcode) {
+		this.customerPostcode = customerPostcode;
 	}
 
-	public String getCustomer_city() {
-		return customer_city;
+	public String getCustomerCity() {
+		return customerCity;
 	}
 
-	public void setCustomer_city(String customer_city) {
-		this.customer_city = customer_city;
+	public void setCustomerCity(String customerCity) {
+		this.customerCity = customerCity;
 	}
 
-	public String getCustomer_tel_number() {
-		return customer_tel_number;
+	public String getCustomerTelNumber() {
+		return customerTelNumber;
 	}
 
-	public void setCustomer_tel_number(String customer_tel_number) {
-		this.customer_tel_number = customer_tel_number;
+	public void setCustomerTelNumber(String customerTelNumber) {
+		this.customerTelNumber = customerTelNumber;
 	}
 
-	public String getCustomer_fax_number() {
-		return customer_fax_number;
+	public String getCustomerFaxNumber() {
+		return customerFaxNumber;
 	}
 
-	public void setCustomer_fax_number(String customer_fax_number) {
-		this.customer_fax_number = customer_fax_number;
+	public void setCustomerFaxNumber(String customerFaxNumber) {
+		this.customerFaxNumber = customerFaxNumber;
 	}
-
 }

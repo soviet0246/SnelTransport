@@ -30,8 +30,6 @@ public class OrderService {
 
 	public void addOrder(Order order) {
 		orderDAO.addOrder(order);
-		
-		System.out.println("OrderService 34: " + order.getOrder_id());
 	}
 
 	public void updateOrder(Order order) {

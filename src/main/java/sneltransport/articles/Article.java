@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Table(name = "Article")
 public class Article implements Serializable {
@@ -24,45 +26,49 @@ public class Article implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "article_id", nullable = false, unique = true)
-	private String article_id;
+	@JsonProperty("article_id")
+	private String articleId;
 
 	@Column(name = "article_name", nullable = false)
 	@NotNull
-	private String article_name;
+	@JsonProperty("article_name")
+	private String articleName;
 
 	@Column(name = "article_price", nullable = false)
 	@NotNull
-	private Double article_price;
+	@JsonProperty("article_price")
+	private Double articlePrice;
 
 	@Column(name = "article_type")
 	private String articleType;
 
 	@Column(name = "article_color")
 	@Enumerated(EnumType.STRING)
-	private ArticleColor article_color;
+	@JsonProperty("article_color")
+	private ArticleColor articleColor;
 
-	public String getArticle_id() {
-		return article_id;
+	public String getArticleId() {
+		return articleId;
 	}
 
-	public void setArticle_id(String article_id) {
-		this.article_id = article_id;
+	public void setArticleId(String articleId) {
+		this.articleId = articleId;
 	}
 
-	public String getArticle_name() {
-		return article_name;
+	public String getArticleName() {
+		return articleName;
 	}
 
-	public void setArticle_name(String article_name) {
-		this.article_name = article_name;
+	public void setArticleName(String articleName) {
+		this.articleName = articleName;
 	}
 
-	public Double getArticle_price() {
-		return article_price;
+	public Double getArticlePrice() {
+		return articlePrice;
 	}
 
-	public void setArticle_price(Double article_price) {
-		this.article_price = article_price;
+	public void setArticlePrice(Double articlePrice) {
+		this.articlePrice = articlePrice;
 	}
 
 	public String getArticleType() {
@@ -73,11 +79,11 @@ public class Article implements Serializable {
 		this.articleType = articleType;
 	}
 
-	public ArticleColor getArticle_color() {
-		return article_color;
+	public ArticleColor getArticleColor() {
+		return articleColor;
 	}
 
-	public void setArticle_color(ArticleColor article_color) {
-		this.article_color = article_color;
+	public void setArticleColor(ArticleColor articleColor) {
+		this.articleColor = articleColor;
 	}
 }
