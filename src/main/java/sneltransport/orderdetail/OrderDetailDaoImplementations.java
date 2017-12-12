@@ -29,7 +29,7 @@ public class OrderDetailDaoImplementations implements OrderDetailDaoInterface {
 	@Transactional
 	public OrderDetail addOrderDetail(OrderDetail orderDetail) {
 		entityManager.persist(orderDetail);
-		return entityManager.find(OrderDetail.class, orderDetail.getOrder_detail_id());
+		return entityManager.find(OrderDetail.class, orderDetail.getOrderDetailId());
 	}
 
 	@Transactional

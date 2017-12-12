@@ -45,7 +45,7 @@ public class OrderDetailController {
 
 		orderDetailService.addOrderDetail(orderDetail);
 
-		headers.setLocation(builder.path("/orderDetails/{id}").buildAndExpand(orderDetail.getOrder_detail_id()).toUri());
+		headers.setLocation(builder.path("/orderDetails/{id}").buildAndExpand(orderDetail.getOrderDetailId()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 

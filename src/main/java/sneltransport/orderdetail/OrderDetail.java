@@ -34,12 +34,11 @@ public class OrderDetail implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "order_detail_id", nullable = false, unique = true)
 	@NotNull
-	private int order_detail_id;
-	
+	private int orderDetailId;
+
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity = Order.class)
-	@NotNull
 	private Order order;
-	
+
 	@NotNull
 	@OneToOne
 	private Article article;
@@ -48,12 +47,12 @@ public class OrderDetail implements Serializable {
 	@NotNull
 	private int quantity = 0;
 
-	public int getOrder_detail_id() {
-		return order_detail_id;
+	public int getOrderDetailId() {
+		return orderDetailId;
 	}
 
-	public void setOrder_detail_id(int order_detail_id) {
-		this.order_detail_id = order_detail_id;
+	public void setOrderDetailId(int orderDetailId) {
+		this.orderDetailId = orderDetailId;
 	}
 
 	public Order getOrder() {
@@ -79,6 +78,5 @@ public class OrderDetail implements Serializable {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+
 }
