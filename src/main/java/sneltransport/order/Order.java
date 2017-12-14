@@ -68,7 +68,7 @@ public class Order implements Serializable {
 	@JsonProperty("order_delivered")
 	private boolean orderDelivered = false;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
+	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name = "order_id", nullable = false)
 	@JsonProperty("order_details")
 	private Set<OrderDetail> orderDetails;

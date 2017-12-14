@@ -29,9 +29,6 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 		
 		entityManager.persist(order);
 		entityManager.flush();
-		
-		System.out.println("Dit word eerst nog uitgevoerd");
-		
 		return entityManager.find(Order.class, order.getOrderId());
 	}
 	@Transactional
@@ -40,6 +37,7 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 	}
 	@Transactional
 	public void deleteOrder(int orderId) {
-		entityManager.remove(orderId);
+		Order order = entityManager.find(Order.class, orderId);
+		entityManager.remove(order);
 	}
 }
