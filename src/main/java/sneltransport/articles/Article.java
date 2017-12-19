@@ -39,13 +39,20 @@ public class Article implements Serializable {
 	@JsonProperty("article_price")
 	private Double articlePrice;
 
-	@Column(name = "article_type")
-	private String articleType;
-
 	@Column(name = "article_color")
 	@Enumerated(EnumType.STRING)
 	@JsonProperty("article_color")
 	private ArticleColor articleColor;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "article_type")
+	@NotNull
+	private ArticleType articleType;
+	
+	@Enumerated(EnumType.STRING)
+	@Column(name = "article_warehouse_location")
+	@NotNull
+	private WarehouseLocation warehouseLocation;
 
 	public String getArticleId() {
 		return articleId;
@@ -71,19 +78,27 @@ public class Article implements Serializable {
 		this.articlePrice = articlePrice;
 	}
 
-	public String getArticleType() {
-		return articleType;
-	}
-
-	public void setArticleType(String articleType) {
-		this.articleType = articleType;
-	}
-
 	public ArticleColor getArticleColor() {
 		return articleColor;
 	}
 
 	public void setArticleColor(ArticleColor articleColor) {
 		this.articleColor = articleColor;
+	}
+
+	public ArticleType getArticleType() {
+		return articleType;
+	}
+
+	public void setArticleType(ArticleType articleType) {
+		this.articleType = articleType;
+	}
+
+	public WarehouseLocation getWarehouseLocation() {
+		return warehouseLocation;
+	}
+
+	public void setWarehouseLocation(WarehouseLocation warehouseLocation) {
+		this.warehouseLocation = warehouseLocation;
 	}
 }
