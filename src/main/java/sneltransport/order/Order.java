@@ -62,7 +62,7 @@ public class Order implements Serializable {
 	@JsonProperty("order_status")
 	private boolean orderStatus = false;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
+	@OneToMany(fetch = FetchType.EAGER, cascade = { CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE })
 	@JoinColumn(name = "order_id", nullable = false)
 	@JsonProperty("order_details")
 	private Set<OrderDetail> orderDetails;
@@ -114,5 +114,5 @@ public class Order implements Serializable {
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
-	
+
 }
