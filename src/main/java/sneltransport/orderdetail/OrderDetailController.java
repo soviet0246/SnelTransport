@@ -2,8 +2,6 @@ package sneltransport.orderdetail;
 
 import java.util.List;
 
-import sneltransport.orderdetail.OrderDetailService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,7 +36,6 @@ public class OrderDetailController {
 		return new ResponseEntity<List<OrderDetail>>(list, HttpStatus.OK);
 	}
 
-	
 	@PostMapping("orderDetail/add")
 	public ResponseEntity<Void> addArticle(@RequestBody OrderDetail orderDetail, UriComponentsBuilder builder) {
 		HttpHeaders headers = new HttpHeaders();

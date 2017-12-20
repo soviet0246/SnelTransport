@@ -51,28 +51,22 @@ public class Order implements Serializable {
 	@JsonProperty("order_type")
 	private OrderType orderType;
 
-	// private CustomerId Auto linken
 	@Column(name = "order_date_time", nullable = false)
 	@NotNull
 	@JsonSerialize(using = LocalDateTimeSerializer.class)
 	@JsonProperty("order_date_time")
-	private LocalDateTime dateAndTimeOrderMade = LocalDateTime.now();
+	private transient LocalDateTime dateAndTimeOrderMade = LocalDateTime.now();
 
-	@Column(name = "order_received", nullable = false)
+	@Column(name = "order_status", nullable = false)
 	@NotNull
-	@JsonProperty("order_received")
-	private boolean orderReceived = false;
-
-	@Column(name = "order_delivered", nullable = false)
-	@NotNull
-	@JsonProperty("order_delivered")
-	private boolean orderDelivered = false;
+	@JsonProperty("order_status")
+	private boolean orderStatus = false;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.REMOVE})
 	@JoinColumn(name = "order_id", nullable = false)
 	@JsonProperty("order_details")
 	private Set<OrderDetail> orderDetails;
-	
+
 	public int getOrderId() {
 		return orderId;
 	}
@@ -105,20 +99,12 @@ public class Order implements Serializable {
 		this.dateAndTimeOrderMade = dateAndTimeOrderMade;
 	}
 
-	public boolean isOrderReceived() {
-		return orderReceived;
+	public boolean isOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setOrderReceived(boolean orderReceived) {
-		this.orderReceived = orderReceived;
-	}
-
-	public boolean isOrderDelivered() {
-		return orderDelivered;
-	}
-
-	public void setOrderDelivered(boolean orderDelivered) {
-		this.orderDelivered = orderDelivered;
+	public void setOrderStatus(boolean orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public Set<OrderDetail> getOrderDetails() {
@@ -128,4 +114,5 @@ public class Order implements Serializable {
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
 	}
+	
 }

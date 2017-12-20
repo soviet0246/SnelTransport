@@ -8,7 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -43,15 +42,16 @@ public class Article implements Serializable {
 	@Enumerated(EnumType.STRING)
 	@JsonProperty("article_color")
 	private ArticleColor articleColor;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "article_type")
 	@NotNull
 	private ArticleType articleType;
-	
+
 	@Enumerated(EnumType.STRING)
 	@Column(name = "article_warehouse_location")
 	@NotNull
+	@JsonProperty("warehouse_location")
 	private WarehouseLocation warehouseLocation;
 
 	public String getArticleId() {

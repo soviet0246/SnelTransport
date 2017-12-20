@@ -2,8 +2,6 @@ package sneltransport.orderdetail;
 
 import java.util.List;
 
-import sneltransport.orderdetail.OrderDetailDaoInterface;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,7 +23,7 @@ public class OrderDetailDaoImplementations implements OrderDetailDaoInterface {
 		String hql = "FROM OrderDetail as order_detail ORDER BY order_detail.orderDetailId";
 		return (List<OrderDetail>) entityManager.createQuery(hql).getResultList();
 	}
-	
+
 	@Transactional
 	public OrderDetail addOrderDetail(OrderDetail orderDetail) {
 		entityManager.persist(orderDetail);

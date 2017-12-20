@@ -13,8 +13,7 @@ public class ArticleService {
 	private ArticleDaoInterface articleDAO;
 
 	public Article getArticleById(int articleId) {
-		Article obj = articleDAO.getArticleById(articleId);
-		return obj;
+		return articleDAO.getArticleById(articleId);
 	}
 
 	public List<Article> getAllArticles() {

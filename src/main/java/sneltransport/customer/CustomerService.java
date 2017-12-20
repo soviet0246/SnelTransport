@@ -13,8 +13,7 @@ public class CustomerService {
 	private CustomerDaoInterface customerDAO;
 
 	public Customer getCustomerById(int customerId) {
-		Customer obj = customerDAO.getCustomerById(customerId);
-		return obj;
+		return customerDAO.getCustomerById(customerId);
 	}
 
 	public List<Customer> getAllCustomers() {
@@ -30,7 +29,7 @@ public class CustomerService {
 		customerDAO.updateCustomer(customer);
 	}
 
-	public void deleteCustomer(int CustomerId) {
-		customerDAO.deleteCustomer(CustomerId);
+	public void deleteCustomer(int customerId) {
+		customerDAO.deleteCustomer(customerId);
 	}
 }

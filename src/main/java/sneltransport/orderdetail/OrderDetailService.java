@@ -4,17 +4,15 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class OrderDetailService {
-	
+
 	@Autowired
 	private OrderDetailDaoInterface orderDetailDAO;
 
 	public OrderDetail getOrderDetailById(int orderDetailId) {
-		OrderDetail obj = orderDetailDAO.getOrderDetailById(orderDetailId);
-		return obj;
+		return orderDetailDAO.getOrderDetailById(orderDetailId);
 	}
 
 	public List<OrderDetail> getAllOrderDetails() {
@@ -29,7 +27,7 @@ public class OrderDetailService {
 		orderDetailDAO.updateOrderDetail(orderDetail);
 	}
 
-	public void deleteOrderDetail(int OrderDetailId) {
-		orderDetailDAO.deleteOrderDetail(OrderDetailId);
+	public void deleteOrderDetail(int orderDetailId) {
+		orderDetailDAO.deleteOrderDetail(orderDetailId);
 	}
 }

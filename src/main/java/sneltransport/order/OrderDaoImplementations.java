@@ -19,14 +19,11 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 
 	@SuppressWarnings("unchecked")
 	public List<Order> getAllOrders() {
-		String hql = "FROM Order as order ORDER BY order.orderId";
+		String hql = "FROM Order as order where order.orderStatus = false ORDER BY order.orderId";
 		return (List<Order>) entityManager.createQuery(hql).getResultList();
 	}
 	@Transactional
 	public Order addOrder(Order order) {
-		
-//		System.out.println("Order size" + order.getOrder_details().size());
-		
 		entityManager.persist(order);
 		entityManager.flush();
 		return entityManager.find(Order.class, order.getOrderId());
