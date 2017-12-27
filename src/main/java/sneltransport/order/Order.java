@@ -35,13 +35,11 @@ public class Order implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "order_id", nullable = false, unique = true)
-	@NotNull
+	@Column(name = "order_id", unique = true)
 	@JsonProperty("order_id")
 	private int orderId;
 
-	@Column(name = "customer_id", nullable = false)
-	@NotNull
+	@Column(name = "customer_id")
 	@JsonProperty("customer_id")
 	private int customerId;
 
@@ -113,6 +111,49 @@ public class Order implements Serializable {
 
 	public void setOrderDetails(Set<OrderDetail> orderDetails) {
 		this.orderDetails = orderDetails;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + customerId;
+		result = prime * result + ((dateAndTimeOrderMade == null) ? 0 : dateAndTimeOrderMade.hashCode());
+		result = prime * result + ((orderDetails == null) ? 0 : orderDetails.hashCode());
+		result = prime * result + orderId;
+		result = prime * result + (orderStatus ? 1231 : 1237);
+		result = prime * result + ((orderType == null) ? 0 : orderType.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Order other = (Order) obj;
+		if (customerId != other.customerId)
+			return false;
+		if (dateAndTimeOrderMade == null) {
+			if (other.dateAndTimeOrderMade != null)
+				return false;
+		} else if (!dateAndTimeOrderMade.equals(other.dateAndTimeOrderMade))
+			return false;
+		if (orderDetails == null) {
+			if (other.orderDetails != null)
+				return false;
+		} else if (!orderDetails.equals(other.orderDetails))
+			return false;
+		if (orderId != other.orderId)
+			return false;
+		if (orderStatus != other.orderStatus)
+			return false;
+		if (orderType != other.orderType)
+			return false;
+		return true;
 	}
 
 }

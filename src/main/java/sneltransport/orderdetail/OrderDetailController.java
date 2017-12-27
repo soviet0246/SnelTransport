@@ -27,13 +27,13 @@ public class OrderDetailController {
 	@GetMapping("orderDetail/{id}")
 	public ResponseEntity<OrderDetail> getArticleById(@PathVariable("id") Integer id) {
 		OrderDetail orderDetail = orderDetailService.getOrderDetailById(id);
-		return new ResponseEntity<OrderDetail>(orderDetail, HttpStatus.OK);
+		return new ResponseEntity<>(orderDetail, HttpStatus.OK);
 	}
 
 	@GetMapping("orderDetails")
 	public ResponseEntity<List<OrderDetail>> getAllOrderDetails() {
 		List<OrderDetail> list = orderDetailService.getAllOrderDetails();
-		return new ResponseEntity<List<OrderDetail>>(list, HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 	@PostMapping("orderDetail/add")
@@ -43,18 +43,18 @@ public class OrderDetailController {
 		orderDetailService.addOrderDetail(orderDetail);
 
 		headers.setLocation(builder.path("/orderDetails/{id}").buildAndExpand(orderDetail.getOrderDetailId()).toUri());
-		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 
 	@PutMapping("orderDetails")
 	public ResponseEntity<OrderDetail> updateArticle(@RequestBody OrderDetail article) {
 		orderDetailService.updateOrderDetail(article);
-		return new ResponseEntity<OrderDetail>(article, HttpStatus.OK);
+		return new ResponseEntity<>(article, HttpStatus.OK);
 	}
 
 	@DeleteMapping("orderDetails/{id}")
 	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
 		orderDetailService.deleteOrderDetail(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

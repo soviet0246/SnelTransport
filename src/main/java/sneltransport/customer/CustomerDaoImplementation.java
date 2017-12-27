@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class CustomerDaoImplementations implements CustomerDaoInterface {
+public class CustomerDaoImplementation implements CustomerDaoInterface {
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -18,12 +18,16 @@ public class CustomerDaoImplementations implements CustomerDaoInterface {
 		return entityManager.find(Customer.class, customerId);
 	}
 
+	/*
+	 * @todo: Add paging functionality
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Customer> getAllCustomers() {
 		String hql = "FROM Customer as customer ORDER BY customer.customerId";
-		return (List<Customer>) entityManager.createQuery(hql).getResultList();
+		return entityManager.createQuery(hql, Customer.class).getResultList();
 	}
 
+	@Transactional
 	public Customer addCustomer(Customer customer) {
 		entityManager.persist(customer);
 		return entityManager.find(Customer.class, customer.getCustomerId());

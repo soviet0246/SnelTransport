@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 @Repository
-public class OrderDaoImplementations implements OrderDaoInterface {
+public class OrderDaoImplementation implements OrderDaoInterface {
 	@PersistenceContext
 	private EntityManager entityManager;
 
@@ -17,10 +17,13 @@ public class OrderDaoImplementations implements OrderDaoInterface {
 		return entityManager.find(Order.class, orderId);
 	}
 
+	/*
+	 * @todo: Add paging functionality
+	 */
 	@SuppressWarnings("unchecked")
 	public List<Order> getAllOrders() {
 		String hql = "FROM Order as order where order.orderStatus = false ORDER BY order.orderId";
-		return (List<Order>) entityManager.createQuery(hql).getResultList();
+		return entityManager.createQuery(hql, Order.class).getResultList();
 	}
 
 	@Transactional

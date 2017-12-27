@@ -27,13 +27,13 @@ public class OrderController {
 	@GetMapping("order/{id}")
 	public ResponseEntity<Order> getOrderById(@PathVariable("id") Integer id) {
 		Order order = orderService.getOrderById(id);
-		return new ResponseEntity<Order>(order, HttpStatus.OK);
+		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 
 	@GetMapping("orders")
 	public ResponseEntity<List<Order>> getAllOrders() {
 		List<Order> list = orderService.getAllOrders();
-		return new ResponseEntity<List<Order>>(list, HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 	@PostMapping("order/add")
@@ -43,18 +43,18 @@ public class OrderController {
 		orderService.addOrder(order);
 
 		headers.setLocation(builder.path("/order/{id}").buildAndExpand(order.getOrderId()).toUri());
-		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 
 	@PutMapping("orders")
 	public ResponseEntity<Order> updateOrder(@RequestBody Order article) {
 		orderService.updateOrder(article);
-		return new ResponseEntity<Order>(article, HttpStatus.OK);
+		return new ResponseEntity<>(article, HttpStatus.OK);
 	}
 
 	@DeleteMapping("order/{id}")
 	public ResponseEntity<Void> deleteOrder(@PathVariable("id") Integer id) {
 		orderService.deleteOrder(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

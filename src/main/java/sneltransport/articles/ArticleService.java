@@ -25,10 +25,12 @@ public class ArticleService {
 		articleDAO.addArticle(article);
 	}
 
+	@Transactional
 	public void updateArticle(Article article) {
 		articleDAO.updateArticle(article);
 	}
-
+	
+	@Transactional
 	public void deleteArticle(int articleId) {
 		articleDAO.deleteArticle(articleId);
 	}

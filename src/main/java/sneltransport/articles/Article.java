@@ -19,7 +19,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Article implements Serializable {
 
 	/**
-	 * Version ID of Order class
+	 * Version ID of Article class
 	 */
 	private static final long serialVersionUID = 1L;
 
@@ -34,15 +34,14 @@ public class Article implements Serializable {
 	@JsonProperty("article_name")
 	private String articleName;
 
-	@Column(name = "article_price", nullable = false)
-	@NotNull
+	@Column(name = "article_price")
 	@JsonProperty("article_price")
 	private Double articlePrice;
 
 	@Column(name = "article_color")
 	@Enumerated(EnumType.STRING)
 	@JsonProperty("article_color")
-	private ArticleColor articleColor;
+	private String articleColor;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "article_type")
@@ -79,11 +78,11 @@ public class Article implements Serializable {
 		this.articlePrice = articlePrice;
 	}
 
-	public ArticleColor getArticleColor() {
+	public String getArticleColor() {
 		return articleColor;
 	}
 
-	public void setArticleColor(ArticleColor articleColor) {
+	public void setArticleColor(String articleColor) {
 		this.articleColor = articleColor;
 	}
 
@@ -102,4 +101,51 @@ public class Article implements Serializable {
 	public void setWarehouseLocation(WarehouseLocation warehouseLocation) {
 		this.warehouseLocation = warehouseLocation;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((articleColor == null) ? 0 : articleColor.hashCode());
+		result = prime * result + ((articleId == null) ? 0 : articleId.hashCode());
+		result = prime * result + ((articleName == null) ? 0 : articleName.hashCode());
+		result = prime * result + ((articlePrice == null) ? 0 : articlePrice.hashCode());
+		result = prime * result + ((articleType == null) ? 0 : articleType.hashCode());
+		result = prime * result + ((warehouseLocation == null) ? 0 : warehouseLocation.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Article other = (Article) obj;
+		if (articleColor != other.articleColor)
+			return false;
+		if (articleId == null) {
+			if (other.articleId != null)
+				return false;
+		} else if (!articleId.equals(other.articleId))
+			return false;
+		if (articleName == null) {
+			if (other.articleName != null)
+				return false;
+		} else if (!articleName.equals(other.articleName))
+			return false;
+		if (articlePrice == null) {
+			if (other.articlePrice != null)
+				return false;
+		} else if (!articlePrice.equals(other.articlePrice))
+			return false;
+		if (articleType != other.articleType)
+			return false;
+		if (warehouseLocation != other.warehouseLocation)
+			return false;
+		return true;
+	}
+
 }

@@ -27,13 +27,13 @@ public class CustomerController {
 	@GetMapping("customer/{id}")
 	public ResponseEntity<Customer> getArticleById(@PathVariable("id") Integer id) {
 		Customer customer = customerService.getCustomerById(id);
-		return new ResponseEntity<Customer>(customer, HttpStatus.OK);
+		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 
 	@GetMapping("customers")
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> list = customerService.getAllCustomers();
-		return new ResponseEntity<List<Customer>>(list, HttpStatus.OK);
+		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
 	@PostMapping("customer/add")
@@ -43,18 +43,18 @@ public class CustomerController {
 		customerService.addCustomer(customer);
 
 		headers.setLocation(builder.path("/customers/{id}").buildAndExpand(customer.getCustomerId()).toUri());
-		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(headers, HttpStatus.CREATED);
 	}
 
 	@PutMapping("customers")
 	public ResponseEntity<Customer> updateArticle(@RequestBody Customer article) {
 		customerService.updateCustomer(article);
-		return new ResponseEntity<Customer>(article, HttpStatus.OK);
+		return new ResponseEntity<>(article, HttpStatus.OK);
 	}
 
 	@DeleteMapping("customers/{id}")
 	public ResponseEntity<Void> deleteArticle(@PathVariable("id") Integer id) {
 		customerService.deleteCustomer(id);
-		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }

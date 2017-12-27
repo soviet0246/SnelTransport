@@ -23,14 +23,13 @@ import sneltransport.order.Order;
 public class OrderDetail implements Serializable {
 
 	/**
-	 * Version ID of Order class
+	 * Version ID of OrderDetail class
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "order_detail_id", nullable = false, unique = true)
-	@NotNull
+	@Column(name = "order_detail_id", unique = true)
 	@JsonProperty("order_detail_id")
 	private int orderDetailId;
 
@@ -41,8 +40,7 @@ public class OrderDetail implements Serializable {
 	@OneToOne
 	private Article article;
 
-	@Column(name = "quantity", nullable = false)
-	@NotNull
+	@Column(name = "quantity")
 	private int quantity = 0;
 
 	public int getOrderDetailId() {
@@ -77,4 +75,40 @@ public class OrderDetail implements Serializable {
 		this.quantity = quantity;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((article == null) ? 0 : article.hashCode());
+		result = prime * result + ((order == null) ? 0 : order.hashCode());
+		result = prime * result + orderDetailId;
+		result = prime * result + quantity;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderDetail other = (OrderDetail) obj;
+		if (article == null) {
+			if (other.article != null)
+				return false;
+		} else if (!article.equals(other.article))
+			return false;
+		if (order == null) {
+			if (other.order != null)
+				return false;
+		} else if (!order.equals(other.order))
+			return false;
+		if (orderDetailId != other.orderDetailId)
+			return false;
+		if (quantity != other.quantity)
+			return false;
+		return true;
+	}
 }
