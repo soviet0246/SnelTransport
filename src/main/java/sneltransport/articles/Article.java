@@ -42,11 +42,13 @@ public class Article implements Serializable {
 	private String articleColor;
 
 	@Column(name = "article_type")
+	@Enumerated(EnumType.STRING)
 	@NotNull
 	private ArticleType articleType;
 
 	@Column(name = "article_warehouse_location")
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	@JsonProperty("warehouse_location")
 	private WarehouseLocation warehouseLocation;
 
