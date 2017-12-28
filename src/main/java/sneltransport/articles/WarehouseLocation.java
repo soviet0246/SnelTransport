@@ -1,5 +1,6 @@
 package sneltransport.articles;
 
+<<<<<<< HEAD
 import sneltransport.utils.PropertiesDynaEnum;
 
 public class WarehouseLocation extends PropertiesDynaEnum {
@@ -19,4 +20,10 @@ public class WarehouseLocation extends PropertiesDynaEnum {
 	public static WarehouseLocation[] values() {
 		return values(WarehouseLocation.class);
 	}
+=======
+public enum WarehouseLocation {
+	WHA,
+	WHB,
+	WHC
+>>>>>>> parent of 4fbf63c... Correctie, had nog niet alle bestanden gecorrigeerd.
 }

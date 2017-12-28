@@ -36,6 +36,7 @@ public class CustomerController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
+	
 	@PostMapping("customer/add")
 	public ResponseEntity<Void> addArticle(@RequestBody Customer customer, UriComponentsBuilder builder) {
 		HttpHeaders headers = new HttpHeaders();

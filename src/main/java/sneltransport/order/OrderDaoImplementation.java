@@ -25,19 +25,16 @@ public class OrderDaoImplementation implements OrderDaoInterface {
 		String hql = "FROM Order as order where order.orderStatus = false ORDER BY order.orderId";
 		return entityManager.createQuery(hql, Order.class).getResultList();
 	}
-
 	@Transactional
 	public Order addOrder(Order order) {
 		entityManager.persist(order);
 		entityManager.flush();
 		return entityManager.find(Order.class, order.getOrderId());
 	}
-
 	@Transactional
 	public void updateOrder(Order order) {
 		entityManager.merge(order);
 	}
-
 	@Transactional
 	public void deleteOrder(int orderId) {
 		Order order = entityManager.find(Order.class, orderId);
