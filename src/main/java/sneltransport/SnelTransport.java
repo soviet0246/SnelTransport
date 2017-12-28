@@ -18,14 +18,11 @@ public class SnelTransport extends SpringBootServletInitializer {
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
 		return application.sources(SnelTransport.class);
 	}
-	
+
 	/***
 	 * Word gebruikt als start method voor de applicatie in andere gevallen.
 	 */
-	
-	
-	
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(SnelTransport.class, args);
 	}

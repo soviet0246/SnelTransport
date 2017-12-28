@@ -31,11 +31,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebAppConfiguration
 public class TestArticleController {
 
+	@Mock
+	private ArticleService articleService;
+	
     @InjectMocks
 	private ArticleController articleController;
-
-    @Mock
-	private ArticleService articleService;
 
     private MockMvc mockMVC;
 

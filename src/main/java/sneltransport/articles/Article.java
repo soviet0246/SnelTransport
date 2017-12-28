@@ -39,16 +39,13 @@ public class Article implements Serializable {
 	private Double articlePrice;
 
 	@Column(name = "article_color")
-	@Enumerated(EnumType.STRING)
 	@JsonProperty("article_color")
 	private String articleColor;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "article_type")
 	@NotNull
 	private ArticleType articleType;
 
-	@Enumerated(EnumType.STRING)
 	@Column(name = "article_warehouse_location")
 	@NotNull
 	@JsonProperty("warehouse_location")

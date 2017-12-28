@@ -24,6 +24,7 @@ public class PropertiesDynaEnum extends DynaEnum<PropertiesDynaEnum> {
 
 	private static <E> void initProperties(Class<E> clazz) throws Exception {
 		String rcName = clazz.getName().replace('.', '/') + ".properties";
+		rcName = rcName.substring(rcName.lastIndexOf('/') + 1, rcName.length());
 		BufferedReader reader = new BufferedReader(
 				new InputStreamReader(Thread.currentThread().getContextClassLoader().getResourceAsStream(rcName)));
 
@@ -32,16 +33,21 @@ public class PropertiesDynaEnum extends DynaEnum<PropertiesDynaEnum> {
 				new Class[] { String.class, int.class, String.class });
 		int ordinal = 0;
 		for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+			System.out.println("Properties DynaEnum 36 line: " + line);
 			line = line.replaceFirst("#.*", "").trim();
 			if (line.equals("")) {
 				continue;
 			}
 			String[] parts = line.split("\\s*=\\s*");
 			if (parts.length == 1 || additionalConstructor == null) {
+				System.out.println("Properties DynaEnum 42 parts[0]: " + parts[0]);
+				System.out.println("Properties DynaEnum 42 ordinal: " + ordinal);
 				minimalConstructor.newInstance(parts[0], ordinal);
 			} else {
+				System.out.println("Properties DynaEnum 45");
 				additionalConstructor.newInstance(parts[0], ordinal, parts[1]);
 			}
+			
 		}
 	}
 
