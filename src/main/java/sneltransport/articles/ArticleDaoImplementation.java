@@ -13,7 +13,7 @@ public class ArticleDaoImplementation implements ArticleDaoInterface {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	public Article getArticleById(int articleId) {
+	public Article getArticleById(String articleId) {
 		return entityManager.find(Article.class, articleId);
 	}
 

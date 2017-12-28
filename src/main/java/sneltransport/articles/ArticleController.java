@@ -25,8 +25,8 @@ public class ArticleController {
 	@Autowired
 	private ArticleService articleService;
 
-	@GetMapping("articles/{id}")
-	public ResponseEntity<Article> getArticleById(@PathVariable("id") Integer id) {
+	@GetMapping("article/{id}")
+	public ResponseEntity<Article> getArticleById(@PathVariable("id") String id) {
 		Article article = articleService.getArticleById(id);
 		return new ResponseEntity<>(article, HttpStatus.OK);
 	}

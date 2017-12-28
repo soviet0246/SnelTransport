@@ -12,7 +12,7 @@ public class ArticleService {
 	@Autowired
 	private ArticleDaoInterface articleDAO;
 
-	public Article getArticleById(int articleId) {
+	public Article getArticleById(String articleId) {
 		return articleDAO.getArticleById(articleId);
 	}
 
