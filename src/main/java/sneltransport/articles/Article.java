@@ -39,7 +39,8 @@ public class Article implements Serializable {
 
 	@Column(name = "article_color")
 	@JsonProperty("article_color")
-	private String articleColor;
+	@Enumerated(EnumType.STRING)
+	private ArticleColor articleColor;
 
 	@Column(name = "article_type")
 	@Enumerated(EnumType.STRING)
@@ -76,12 +77,12 @@ public class Article implements Serializable {
 		this.articlePrice = articlePrice;
 	}
 
-	public String getArticleColor() {
+	public ArticleColor getArticleColor() {
 		return articleColor;
 	}
 
-	public void setArticleColor(String articleColor) {
-		this.articleColor = articleColor;
+	public void setArticleColor(ArticleColor color) {
+		this.articleColor = color;
 	}
 
 	public ArticleType getArticleType() {

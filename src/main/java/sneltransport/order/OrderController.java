@@ -44,13 +44,13 @@ public class OrderController {
 		orderService.addOrder(order);
 		
 		headers.setLocation(builder.path("/order/{id}").buildAndExpand(order.getOrderId()).toUri());
-		return new ResponseEntity<>(headers, HttpStatus.CREATED);
+		return new ResponseEntity<>(headers, HttpStatus.OK);
 	}
 
-	@PutMapping("orders")
-	public ResponseEntity<Order> updateOrder(@RequestBody Order article) {
-		orderService.updateOrder(article);
-		return new ResponseEntity<>(article, HttpStatus.OK);
+	@PutMapping("order")
+	public ResponseEntity<Order> updateOrder(@RequestBody Order order) {
+		orderService.updateOrder(order);
+		return new ResponseEntity<>(order, HttpStatus.OK);
 	}
 
 	@DeleteMapping("order/{id}")

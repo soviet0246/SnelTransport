@@ -1,7 +1,5 @@
 package testsneltransport.articles;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
@@ -17,8 +15,6 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -27,6 +23,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sneltransport.articles.Article;
+import sneltransport.articles.ArticleColor;
 import sneltransport.articles.ArticleController;
 import sneltransport.articles.ArticleService;
 import sneltransport.articles.ArticleType;
@@ -72,7 +69,7 @@ public class TestArticleController {
 	public void testGetSpecificArticleById() throws Exception {
 
 		String articleId = "1";
-		Article article = makeArticle("GEEL", "1", "mobo", 1.0, ArticleType.BOARD);
+		Article article = makeArticle(ArticleColor.ZILVER, "1", "mobo", 1.0, ArticleType.BOARD);
 
 		when(articleService.getArticleById(articleId)).thenReturn(article);
 
@@ -82,21 +79,21 @@ public class TestArticleController {
 		mockMVC.perform(get("/articles/article/" + articleId)).andExpect(MockMvcResultMatchers.status().isOk())
 				.andExpect(content().string(expectedContent));
 	}
-	
+
 	@Test
 	public void testUpdateArticle() throws Exception {
 
-		Article article = makeArticle("GEEL", "1", "mobo", 1.0, ArticleType.BOARD);
+		Article article = makeArticle(ArticleColor.ZILVER, "1", "mobo", 1.0, ArticleType.BOARD);
 
 		mockMVC.perform(put("/articles/articles/")).andExpect(MockMvcResultMatchers.status().is(400));
 	}
 
 	private List<Article> getAllArticles() {
-		return Arrays.asList(makeArticle("GEEL", "1", "mobo", 1.0, ArticleType.BOARD),
-				makeArticle("ROOD", "2", "scherm", 2.0, ArticleType.DISPLAYS));
+		return Arrays.asList(makeArticle(ArticleColor.GRIJS, "1", "mobo", 1.0, ArticleType.BOARD),
+				makeArticle(ArticleColor.ZILVER, "2", "scherm", 2.0, ArticleType.DISPLAYS));
 	}
 
-	private Article makeArticle(String color, String id, String name, double price, ArticleType type) {
+	private Article makeArticle(ArticleColor color, String id, String name, double price, ArticleType type) {
 		Article article = new Article();
 		article.setArticleColor(color);
 		article.setArticleId(id);
