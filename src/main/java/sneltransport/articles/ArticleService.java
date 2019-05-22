@@ -1,0 +1,37 @@
+package sneltransport.articles;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+@Service
+public class ArticleService {
+	
+	@Autowired
+	private ArticleDaoInterface articleDAO;
+
+	public Article getArticleById(String articleId) {
+		return articleDAO.getArticleById(articleId);
+	}
+
+	public List<Article> getAllArticles() {
+		return articleDAO.getAllArticles();
+	}
+
+	@Transactional
+	public void addArticle(Article article) {
+		articleDAO.addArticle(article);
+	}
+
+	@Transactional
+	public void updateArticle(Article article) {
+		articleDAO.updateArticle(article);
+	}
+	
+	@Transactional
+	public void deleteArticle(int articleId) {
+		articleDAO.deleteArticle(articleId);
+	}
+}
